@@ -1,0 +1,226 @@
+# JavaScript Object 주요 메서드 정리
+
+JavaScript의 **Object 객체**는 객체를 다루기 위한 다양한 메서드를 제공합니다. 이 문서에서는 자주 사용되는 **`Object.assign`**, **`Object.entries`**, **`Object.keys`**, **`Object.values`**의 개념과 예제를 정리합니다. 이러한 메서드는 객체의 속성 복사, 키-값 쌍 추출, 키 또는 값만 가져오는 작업에서 유용하게 사용됩니다.
+
+---
+
+## 📂 1. `Object.assign()`
+
+### **개념**
+- 하나 이상의 소스 객체의 속성을 대상 객체로 복사합니다.
+- 대상 객체를 반환하며, 원본 객체는 변경되지 않습니다.
+
+### **구문**
+```
+Object.assign(target, ...sources)
+```
+- **`target`**: 속성을 복사할 대상 객체.
+- **`sources`**: 속성을 복사할 하나 이상의 소스 객체.
+
+---
+
+### **예제**
+
+#### 기본 사용:
+```
+const target = { a: 1 };
+const source = { b: 2, c: 3 };
+const result = Object.assign(target, source);
+
+console.log(result); // { a: 1, b: 2, c: 3 }
+console.log(target); // { a: 1, b: 2, c: 3 } (대상이 변경됨)
+```
+
+#### 객체 병합:
+```
+const obj1 = { a: 1 };
+const obj2 = { b: 2 };
+const obj3 = { c: 3 };
+
+const merged = Object.assign({}, obj1, obj2, obj3);
+console.log(merged); // { a: 1, b: 2, c: 3 }
+```
+
+#### 중첩된 객체 복사:
+- 얕은 복사만 수행되므로 중첩된 객체는 참조가 복사됩니다.
+```
+const nested = { a: { b: 1 } };
+const shallowCopy = Object.assign({}, nested);
+
+shallowCopy.a.b = 2;
+console.log(nested.a.b); // 2 (원본도 변경됨)
+```
+
+---
+
+## 📂 2. `Object.entries()`
+
+### **개념**
+- 객체의 **키-값 쌍**을 배열 형태로 반환합니다.
+- 반환된 배열은 각 요소가 `[key, value]` 형식의 배열입니다.
+
+### **구문**
+```
+Object.entries(obj)
+```
+- **`obj`**: 키-값 쌍을 추출할 대상 객체.
+
+---
+
+### **예제**
+
+#### 기본 사용:
+```
+const user = { name: "Alice", age: 25 };
+const entries = Object.entries(user);
+
+console.log(entries);
+// [["name", "Alice"], ["age", 25]]
+```
+
+#### 반복문 활용:
+```
+const user = { name: "Alice", age: 25 };
+
+for (const [key, value] of Object.entries(user)) {
+    console.log(`${key}: ${value}`);
+}
+// 출력:
+// name: Alice
+// age: 25
+```
+
+#### 객체 배열 변환:
+```
+const entries = [["name", "Alice"], ["age", 25]];
+const obj = Object.fromEntries(entries);
+
+console.log(obj); // { name: "Alice", age: 25 }
+```
+
+---
+
+## 📂 3. `Object.keys()`
+
+### **개념**
+- 객체의 모든 키를 배열로 반환합니다.
+
+### **구문**
+```
+Object.keys(obj)
+```
+- **`obj`**: 키를 추출할 대상 객체.
+
+---
+
+### **예제**
+
+#### 기본 사용:
+```
+const user = { name: "Alice", age: 25 };
+const keys = Object.keys(user);
+
+console.log(keys); // ["name", "age"]
+```
+
+#### 빈 객체 처리:
+```
+console.log(Object.keys({})); // []
+```
+
+#### 배열처럼 동작하는 객체:
+```
+const arrayLike = { 0: "a", 1: "b", length: 2 };
+console.log(Object.keys(arrayLike)); // ["0", "1", "length"]
+```
+
+---
+
+## 📂 4. `Object.values()`
+
+### **개념**
+- 객체의 모든 값을 배열로 반환합니다.
+
+### **구문**
+```
+Object.values(obj)
+```
+- **`obj`**: 값을 추출할 대상 객체.
+
+---
+
+### **예제**
+
+#### 기본 사용:
+```
+const user = { name: "Alice", age: 25 };
+const values = Object.values(user);
+
+console.log(values); // ["Alice", 25]
+```
+
+#### 빈 객체 처리:
+```
+console.log(Object.values({})); // []
+```
+
+#### 배열처럼 동작하는 객체:
+```
+const arrayLike = { 0: "a", 1: "b", length: 2 };
+console.log(Object.values(arrayLike)); // ["a", "b", 2]
+```
+
+---
+
+## 📂 활용 사례
+
+### **1. 객체 병합 및 업데이트**
+- `Object.assign()`을 사용하여 기존 데이터를 업데이트하거나 새로운 데이터를 추가합니다.
+```
+const user = { name: "Alice" };
+const updates = { age: 25 };
+
+const updatedUser = Object.assign({}, user, updates);
+console.log(updatedUser); // { name: "Alice", age: 25 }
+```
+
+---
+
+### **2. 키와 값으로 데이터 처리**
+- `Object.entries()`와 반복문을 결합하여 데이터를 처리합니다.
+```
+const settings = { theme: "dark", notificationsEnabled: true };
+
+for (const [key, value] of Object.entries(settings)) {
+    console.log(`${key}: ${value}`);
+}
+// 출력:
+// theme: dark
+// notificationsEnabled: true
+```
+
+---
+
+### **3. 필터링 및 변환**
+- `Object.keys()`와 `Object.values()`를 활용하여 특정 조건에 맞는 데이터를 필터링하거나 변환합니다.
+#### 예제:
+```
+// 값이 숫자인 키만 필터링
+const data = { a: "x", b: "y", c: 10 };
+
+const numericKeys = Object.keys(data).filter(key => typeof data[key] === "number");
+console.log(numericKeys); // ["c"]
+```
+
+---
+
+## ✨ 요약
+
+| 메서드            | 설명                                                     | 예제                                      |
+|-------------------|----------------------------------------------------------|------------------------------------------|
+| `Object.assign()` | 하나 이상의 소스 객체의 속성을 대상 객체에 복사           | `{a}.assign({b}) → {a,b}`                |
+| `Object.entries()`| 키-값 쌍을 `[key, value]` 배열 형태로 반환                | `{a}.entries() → [["key","value"]]`      |
+| `Object.keys()`   | 모든 키를 배열로 반환                                     | `{a}.keys() → ["key"]`                   |
+| `Object.values()` | 모든 값을 배열로 반환                                     | `{a}.values() → ["value"]`               |
+
+---
