@@ -1,0 +1,195 @@
+# JavaScript 논리 연산자 (Logical Operators)
+
+JavaScript의 **논리 연산자**는 조건을 평가하거나 여러 조건을 결합하여 논리적 결정을 내릴 때 사용됩니다. 이러한 연산자는 Boolean 값뿐만 아니라 **모든 데이터 타입**에 적용될 수 있으며, 논리적 판단 결과를 반환합니다.
+
+---
+
+## 📖 주요 논리 연산자
+
+JavaScript에서 제공하는 주요 논리 연산자는 다음과 같습니다:
+
+1. **`&&` (AND)**: 모든 조건이 `true`일 때 `true`를 반환.
+2. **`||` (OR)**: 하나라도 `true`일 경우 `true`를 반환.
+3. **`!` (NOT)**: 값을 반대로 변환.
+4. **`??` (Nullish Coalescing)**: `null` 또는 `undefined`가 아닌 첫 번째 값을 반환 (*추가적으로 언급*).
+
+---
+
+## 1. AND (`&&`) 연산자
+
+### 설명
+- **두 조건이 모두 참일 때만** `true`를 반환합니다.
+- 왼쪽 피연산자가 `false`로 평가되면, 오른쪽 피연산자를 평가하지 않고 바로 `false`를 반환합니다 (**단축 평가**).
+
+### 구문
+```
+expression1 && expression2
+```
+
+### 예제
+```
+let age = 20;
+let hasID = true;
+
+if (age >= 18 && hasID) {
+    console.log("Access granted"); // 출력: Access granted
+} else {
+    console.log("Access denied");
+}
+
+console.log(10 > 5 && 5 > 2); // true
+console.log(10 > 5 && 5 < 2); // false
+```
+
+#### 단축 평가 예제:
+```
+let result = false && "Hello";
+console.log(result); // false (왼쪽 피연산자가 false이므로 오른쪽은 평가되지 않음)
+```
+
+---
+
+## 2. OR (`||`) 연산자
+
+### 설명
+- **하나라도 참이면** `true`를 반환합니다.
+- 왼쪽 피연산자가 `true`로 평가되면, 오른쪽 피연산자를 평가하지 않고 바로 `true`를 반환합니다 (**단축 평가**).
+
+### 구문
+```
+expression1 || expression2
+```
+
+### 예제
+```
+let username = "";
+let defaultName = "Guest";
+
+let displayName = username || defaultName;
+console.log(displayName); // 출력: Guest
+
+console.log(10 > 5 || 5 < 2); // true
+console.log(10 < 5 || 5 < 2); // false
+```
+
+#### 단축 평가 예제:
+```
+let result = true || "Hello";
+console.log(result); // true (왼쪽 피연산자가 true이므로 오른쪽은 평가되지 않음)
+```
+
+---
+
+## 3. NOT (`!`) 연산자
+
+### 설명
+- Boolean 값을 반대로 변환합니다.
+- Truthy 값은 `false`, Falsy 값은 `true`로 변환됩니다.
+
+### 구문
+```
+!value
+```
+
+### 예제
+```
+console.log(!true);        // false
+console.log(!false);       // true
+console.log(!0);           // true (Falsy 값)
+console.log(!"hello");     // false (Truthy 값)
+console.log(!null);        // true (Falsy 값)
+```
+
+#### 이중 부정 (`!!`)
+- 값을 명시적으로 Boolean으로 변환할 때 사용됩니다.
+```
+console.log(!!"hello");    // true
+console.log(!!0);          // false
+```
+
+---
+
+## 추가: Nullish Coalescing (`??`) 연산자
+
+### 설명
+- 왼쪽 피연산자가 `null` 또는 `undefined`인 경우에만 오른쪽 값을 반환합니다.
+- 기본값을 설정할 때 유용합니다.
+
+### 구문
+```
+value1 ?? value2
+```
+
+### 예제
+```
+let user;
+let defaultUser = "Guest";
+
+let displayName = user ?? defaultUser;
+console.log(displayName); // 출력: Guest
+
+let value = null ?? undefined ?? "Hello";
+console.log(value); // 출력: Hello (첫 번째 Truthy 값)
+```
+
+---
+
+## 🛠️ 논리 연산자의 우선순위
+
+JavaScript에서 논리 연산자의 우선순위는 다음과 같습니다:
+1. **NOT (`!`)**: 가장 먼저 평가됨.
+2. **AND (`&&`)**: 두 번째로 평가됨.
+3. **OR (`||`)**: 마지막으로 평가됨.
+
+### 우선순위 예제:
+```
+let result = false || true && false;
+console.log(result); // false (AND가 먼저 평가됨: true && false => false, 이후 OR로 false || false => false)
+```
+
+---
+
+## 활용 사례
+
+### 조건문에서의 활용:
+논리 연산자는 조건문에서 여러 조건을 결합하거나 단축 평가를 통해 코드를 간결하게 작성하는 데 유용합니다.
+```
+let isLoggedIn = true;
+let hasPermission = false;
+
+if (isLoggedIn && hasPermission) {
+    console.log("Access granted");
+} else {
+    console.log("Access denied"); // 출력: Access denied
+}
+```
+
+### 기본값 설정:
+OR(`||`)와 Nullish Coalescing(`??`)는 기본값을 설정할 때 자주 사용됩니다.
+```
+let username = "";
+let displayName = username || "Guest";   // OR 사용: Guest 출력
+let displayName2 = username ?? "Guest"; // Nullish Coalescing 사용: "" 출력 (빈 문자열은 null이나 undefined가 아님)
+console.log(displayName, displayName2);
+```
+
+---
+
+## ✨ 요약
+
+1. **AND (`&&`)**
+   - 모든 조건이 참일 때만 `true`.
+   - 단축 평가로 첫 번째 Falsy 값을 반환.
+
+2. **OR (`||`)**
+   - 하나라도 참이면 `true`.
+   - 단축 평가로 첫 번째 Truthy 값을 반환.
+
+3. **NOT (`!`)**
+   - Boolean 값을 반대로 변환.
+   - 이중 부정(`!!`)으로 명시적 Boolean 변환 가능.
+
+4. **Nullish Coalescing (`??`)**
+   - `null` 또는 `undefined`인 경우에만 기본값을 반환.
+
+---
