@@ -1,0 +1,214 @@
+# JavaScript 반복문: For, For...of, For...in
+
+JavaScript에서 반복문은 **배열, 객체, 문자열 등 이터러블(iterable) 데이터**를 순회하거나 특정 작업을 반복적으로 수행하기 위해 사용됩니다. 가장 일반적으로 사용되는 반복문은 **`for`**, **`for...of`**, 그리고 **`for...in`**입니다. 이 반복문들은 각각의 용도와 특징이 있으므로 적절한 상황에서 선택적으로 사용하는 것이 중요합니다.
+
+---
+
+## 📖 1. For 반복문
+
+### **1. 개념**
+- `for` 반복문은 특정 조건이 참(`true`)인 동안 코드를 반복 실행합니다.
+- 주로 **배열의 인덱스를 기반으로 순회**하거나, 고정된 횟수만큼 반복할 때 사용됩니다.
+
+### **2. 구문**
+```
+for (초기화; 조건; 증감) {
+    // 반복 실행할 코드
+}
+```
+
+- **초기화**: 루프가 시작될 때 한 번 실행.
+- **조건**: 조건이 참일 경우 루프 실행, 거짓이면 종료.
+- **증감**: 각 반복이 끝날 때 실행.
+
+### **3. 예제**
+
+#### 기본 사용:
+```
+for (let i = 0; i < 5; i++) {
+    console.log(`Iteration: ${i}`);
+}
+// 출력:
+// Iteration: 0
+// Iteration: 1
+// Iteration: 2
+// Iteration: 3
+// Iteration: 4
+```
+
+#### 배열 순회:
+```
+const fruits = ["apple", "banana", "cherry"];
+
+for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}
+// 출력:
+// apple
+// banana
+// cherry
+```
+
+#### 중첩 For:
+```
+for (let i = 1; i <= 3; i++) {
+    for (let j = 1; j <= 3; j++) {
+        console.log(`i=${i}, j=${j}`);
+    }
+}
+// 출력:
+// i=1, j=1
+// i=1, j=2
+// ...
+// i=3, j=3
+```
+
+---
+
+## 📖 2. For...of 반복문
+
+### **1. 개념**
+- `for...of`는 **이터러블 객체(배열, 문자열, Map, Set 등)**를 순회하며, 각 요소의 값을 반환합니다.
+- 배열의 요소를 직접 다룰 때 유용하며, 인덱스가 필요하지 않은 경우 적합합니다.
+
+### **2. 구문**
+```
+for (const element of iterable) {
+    // 반복 실행할 코드
+}
+```
+
+- `iterable`: 순회 가능한 객체(배열, 문자열, Map 등).
+
+### **3. 예제**
+
+#### 배열 순회:
+```
+const fruits = ["apple", "banana", "cherry"];
+
+for (const fruit of fruits) {
+    console.log(fruit);
+}
+// 출력:
+// apple
+// banana
+// cherry
+```
+
+#### 문자열 순회:
+```
+const word = "hello";
+
+for (const char of word) {
+    console.log(char);
+}
+// 출력:
+// h
+// e
+// l
+// l
+// o
+```
+
+#### Set 순회:
+```
+const uniqueNumbers = new Set([1, 2, 3]);
+
+for (const number of uniqueNumbers) {
+    console.log(number);
+}
+// 출력:
+// 1
+// 2
+// 3
+```
+
+#### Map 순회:
+```
+const userRoles = new Map([
+    ["Alice", "Admin"],
+    ["Bob", "Editor"],
+]);
+
+for (const [user, role] of userRoles) {
+    console.log(`${user}: ${role}`);
+}
+// 출력:
+// Alice: Admin
+// Bob: Editor
+```
+
+---
+
+## 📖 3. For...in 반복문
+
+### **1. 개념**
+- `for...in`은 객체의 **열거 가능한 속성(key)**을 순회합니다.
+- 주로 객체의 속성을 다룰 때 사용됩니다.
+
+### **2. 구문**
+```
+for (const key in object) {
+    // 반복 실행할 코드
+}
+```
+
+- `object`: 열거 가능한 속성을 가진 객체.
+
+### **3. 예제**
+
+#### 객체 속성 순회:
+```
+const user = { name: "Alice", age: 25 };
+
+for (const key in user) {
+    console.log(`${key}: ${user[key]}`);
+}
+// 출력:
+// name: Alice
+// age: 25
+```
+
+#### 배열에서 사용:
+- 배열에서도 사용할 수 있지만, 배열의 인덱스를 반환하므로 일반적으로 권장되지 않습니다.
+```
+const fruits = ["apple", "banana", "cherry"];
+
+for (const index in fruits) {
+    console.log(index); // 인덱스 반환
+    console.log(fruits[index]); // 값 반환 가능
+}
+// 출력:
+// 0 apple
+// 1 banana
+// 2 cherry
+```
+
+---
+
+## 🛠️ For vs For...of vs For...in
+
+| 특징               | For                                  | For...of                              | For...in                              |
+|--------------------|--------------------------------------|---------------------------------------|---------------------------------------|
+| 주요 용도          | 고정된 횟수 반복 및 인덱스 기반 순회   | 이터러블(배열, 문자열 등)의 값 순회     | 객체의 열거 가능한 속성(key) 순회       |
+| 반환 값            | 인덱스 또는 조건에 따른 제어           | 이터러블의 각 요소 값                  | 객체의 키(key)                         |
+| 이터러블 지원 여부 | 가능                                 | 가능                                  | 불가능                                |
+| 객체 속성 접근      | 불편                                 | 불편                                  | 적합                                  |
+
+---
+
+## ✨ 요약
+
+1. **For**:
+   - 고정된 횟수나 인덱스를 기반으로 배열을 순회할 때 사용.
+   - 중첩 루프와 범위 기반 작업에 적합.
+
+2. **For...of**:
+   - 배열이나 이터러블의 값을 직접 다룰 때 사용.
+   - 인덱스가 필요 없는 경우 간결하고 가독성이 좋음.
+
+3. **For...in**:
+   - 객체의 열거 가능한 속성을 순회할 때 사용.
+   - 배열에서는 권장되지 않음(인덱스를 반환하므로 혼란을 초래할 수 있음).
+
+---
