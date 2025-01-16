@@ -162,6 +162,6 @@ CSS 선언은 우선순위 점수에 따라 적용됩니다:
 5. 전체 선택자 (`0점`)
 6. 동일 점수일 경우, 가장 마지막 선언이 우선. / !important의 경우 우선순위 무조건 먼저
 
-![우선순위 점수표 이미지 예시](https://private-user-images.githubusercontent.com/144297891/403205127-3741c0c1-1111-4c0e-b0b7-7ec1bae06dce.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzcwMTgxMjUsIm5iZiI6MTczNzAxNzgyNSwicGF0aCI6Ii8xNDQyOTc4OTEvNDAzMjA1MTI3LTM3NDFjMGMxLTExMTEtNGMwZS1iMGI3LTdlYzFiYWUwNmRjZS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMTE2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDExNlQwODU3MDVaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05YmRjYzMxZDM2YWNmMDEyOGVlOWEyZjAwZTdjOTVjNzMwNDIzNDlhOGNhYTcyZmY2MWQwMGRlMWVlYTMyYWI3JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.72IzZ4LQDSt4mE4qxEgADu8MebsyKldhHZkmUcZgyss)
+![우선순위 점수표 이미지 예시](https://github.com/user-attachments/assets/3741c0c1-1111-4c0e-b0b7-7ec1bae06dce)
 
 ---
